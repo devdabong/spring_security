@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+	
+	<context:property-placeholder location="classpath:db.properties"/>
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${db1.driverClassName}" />
+		<property name="url" value="${db1.url}" />
+		<property name="username" value="${db1.username}" />
+		<property name="password" value="${db1.password}" />
+        <property name="initialSize" value="${db1.initial.size}"/>
+        <property name="minIdle" value="${db1.min.idle}"/>
+        <property name="maxIdle" value="${db1.max.idle}"/>
+        <property name="maxTotal" value="${db1.max.active}"/>
+        <property name="maxWaitMillis" value="${db1.max.wait}"/>
+        <property name="poolPreparedStatements" value="${db1.pool.prepared.statements}"/>
+        <property name="defaultAutoCommit" value="${db1.default.auto.commit}"/>
+        <property name="validationQuery" value="${db1.validation.query}" />
+	</bean>
+	
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sqlSessionFactory" />
+    </bean>
+    
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:/mapper/mybatis-config.xml" />
+        <property name="mapperLocations" value="classpath:/mapper/sqlmap-*.xml" />
+    </bean>
+    
+    <bean id="serviceMapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.sample.web.*.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>
+	
+</beans>
