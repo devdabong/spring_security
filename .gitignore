@@ -1,0 +1,13 @@
+*/build/*
+*/target/*
+*/logs/*
+*/log/*
+*/D:/*
+*/.settings/*
+*/.svn/*
+*/classes/*
+*/bin/*
+
+.classpath
+.springBeans
+.project
