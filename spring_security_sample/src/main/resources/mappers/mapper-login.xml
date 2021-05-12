@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
-<mapper namespace="com.sample.spring.login.dao.LoginDAO">
+<mapper namespace="com.sample.spring.dao.LoginDAO">
 	
-	<select id="selectLogin" parameterType="LoginVO" resultType="UserDTO">
+	<select id="selectUserList" parameterType="LoginVO" resultType="LoginVO">
 		SELECT 
 				 USER_ID
 				,USER_NM
@@ -17,8 +17,8 @@
 				,CRE_DATE
 				,PWD_MOD_DATE
 		  FROM  TB_USER
-		 WHERE  USER_ID = #{uid}
-		   AND  USER_PWD = #{pwd}
+		 WHERE  USER_ID = #{userId}
+		   AND  USER_PWD = #{userPwd}
 	</select>
 	
 </mapper>

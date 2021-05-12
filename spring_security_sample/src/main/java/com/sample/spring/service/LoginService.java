@@ -1,5 +1,10 @@
 package com.sample.spring.service;
 
-public interface LoginService {
+import java.util.List;
 
+import com.sample.spring.model.LoginVO;
+
+public interface LoginService {
+	
+	List<LoginVO> selectUserList(LoginVO vo);
 }

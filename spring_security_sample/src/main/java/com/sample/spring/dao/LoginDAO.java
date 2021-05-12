@@ -1,5 +1,11 @@
 package com.sample.spring.dao;
 
-public interface LoginDAO {
+import java.util.List;
 
+import com.sample.spring.model.LoginVO;
+
+
+public interface LoginDAO {
+	
+	List<LoginVO> selectUserList(LoginVO vo);
 }

@@ -2,50 +2,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
+
+	<security:http auto-config="true">
+		<security:intercept-url pattern="/**" access="ROLE_USER"/>
+	</security:http>
 	
-	<!-- Authorization 권한 정보 -->
-	<security:http auto-config="true" use-expressions="true">
-		<security:intercept-url pattern="/login/login" access="permitAll"/>
-		<security:intercept-url pattern="/login/all" access="permitAll"/>
-		<security:intercept-url pattern="/login/member" access="hasRole('ROLE_MEMBER')"/>
-		<security:intercept-url pattern="/login/admin" access="hasRole('ROLE_ADMIN')"/>
-		<security:intercept-url pattern="/**" access="permitAll"/>
-		 
-		<!-- <security:form-login 
-			login-page="/login/all"
-			username-parameter="uid"
-			password-parameter="upw"
-			login-processing-url="/login/login"
-			default-target-url="/"
-			authentication-failure-url="/login/loginFailure"
-		/> -->
-		<security:form-login 
-			login-page="/login/all"
-			username-parameter="uid"
-			password-parameter="upw"
-			login-processing-url="/login/login"
-			default-target-url="/"
-			authentication-failure-url="/login/loginFailure"
-		/>   
-				 
-		<!-- 로그아웃 -->
-		<!-- Controller 필요 없이 spring security filter가 처리. -->
-		<security:logout logout-success-url="/login/all" logout-url="/login/logout"/>
-	</security:http>  
-		
-		
-	<!-- Authentication 인증 정보 -->	
-	<!-- provider를 통해 역할 당 사용자 추가  -->
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:user-service>
-				<security:user name="user" password="user" authorities="ROLE_MEMBER"/>
-				<security:user name="admin" password="admin" authorities="ROLE_MEMBER, ROLE_ADMIN"/>
+				<security:user name="guest" password="guest"  authorities="ROLE_USER"/>
 			</security:user-service>
 		</security:authentication-provider>
 	</security:authentication-manager>
-
 </beans>
