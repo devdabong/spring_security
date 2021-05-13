@@ -41,6 +41,10 @@ public class LoginServiceImpl implements LoginService{
 			
 			// CustomUserDeatils 사용한 코드
 			List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
+			
+			if(userInfo.getAdminYn().equals("Y")) {
+				roles.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+			}
 			roles.add(new SimpleGrantedAuthority("ROLE_USER"));
 			
 			authentication = new UsernamePasswordAuthenticationToken(vo.getUserId(), vo.getUserPwd(), roles);

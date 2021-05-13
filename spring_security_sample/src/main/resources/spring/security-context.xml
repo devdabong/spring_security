@@ -19,6 +19,9 @@
 						authentication-failure-url="/login"
 						always-use-default-target="true"
 						/>
+		 <security:logout
+            			logout-success-url="/"
+            			logout-url="/logout" />						
 		
 	</security:http>
 	
