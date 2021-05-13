@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import com.sample.spring.security.CustomUserDetails;
 
@@ -18,15 +17,12 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	@GetMapping("login")
-	public String loginPage() {
+	public String loginPage(HttpSession session) {
+		
+		logger.info("Welcome login! {}", session.getId());
+		
 		return "login";
 	}
-	
-	@PostMapping("login")
-	public void login(HttpSession session) {
-		logger.info("Welcome login! {}", session.getId());
-	}
-
 	
 /*	//스프링 시큐리티 (security-context.xml에서 대신 설정
 	@GetMapping("logout")
