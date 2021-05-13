@@ -8,4 +8,11 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<import resource="classpath:spring/datasource-context.xml"/>
 	
+	<context:component-scan base-package="com.sample.spring">
+	    <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	    <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+       <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+    
+	<context:annotation-config/>
 </beans>

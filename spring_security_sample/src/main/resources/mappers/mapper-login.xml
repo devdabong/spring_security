@@ -4,7 +4,7 @@
         
 <mapper namespace="com.sample.spring.dao.LoginDAO">
 	
-	<select id="selectUserList" parameterType="LoginVO" resultType="LoginVO">
+	<select id="selectLogin" parameterType="LoginVO" resultType="LoginVO">
 		SELECT 
 				 USER_ID
 				,USER_NM
