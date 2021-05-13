@@ -1,5 +1,6 @@
 Spring Legacy Project Sample
 
 - mybatis
-- mysql
-- java 1.8
+- mysql 8
+- java 11
+- spring 4
